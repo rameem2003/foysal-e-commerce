@@ -56,21 +56,21 @@ const Cart = () => {
               cart.map((data, i) => (
                 <div
                   key={i}
-                  className=" w-full md:w-[48%] border-[1px] border-[#F0F0F0] p-2"
+                  className="w-full border-[1px] border-[#F0F0F0] p-2 md:w-[48%]"
                 >
-                  <div className="relative w-full h-auto">
-                    <div className="w-full h-[300px]">
+                  <div className="relative h-auto w-full">
+                    <div className="h-[300px] w-full">
                       <Image
-                        className="w-full h-full"
+                        className="h-full w-full"
                         src={data.thumbnail}
                         alt="item"
                       />
                     </div>
                     <FaTimes
                       onClick={() => removeItemFromCart(data)}
-                      className=" absolute top-1 right-1 cursor-pointer"
+                      className="absolute right-1 top-1 cursor-pointer"
                     />
-                    <span className="p-2 bg-slate-800 font-medium text-xs text-center text-white absolute top-1 left-1">
+                    <span className="absolute left-1 top-1 bg-slate-800 p-2 text-center text-xs font-medium text-white">
                       Unit Price: ৳ {data.price} BDT
                     </span>
                   </div>
@@ -78,42 +78,42 @@ const Cart = () => {
                   <div className="mt-5">
                     <Link
                       to={`/product/${data.id}`}
-                      className=" block font-dm font-bold text-base text-center text-black"
+                      className="font-dm block text-center text-base font-bold text-black"
                     >
                       {data.title}
                     </Link>
 
-                    <p className=" font-semibold text-base text-center mt-2">
+                    {/* <p className=" font-semibold text-base text-center mt-2">
                       Size: {data.dimensions}
-                    </p>
+                    </p> */}
                     <Flex
-                      className={`my-5 border-[1px] border-[#F0F0F0] w-[50%] items-center justify-center mx-auto`}
+                      className={`mx-auto my-5 w-[50%] items-center justify-center border-[1px] border-[#F0F0F0]`}
                     >
                       <button
                         onClick={() => quantity(i, -1)}
-                        className=" font-normal text-[16px] leading-[30px] text-black/80 py-[3px] px-[21px]"
+                        className="px-[21px] py-[3px] text-[16px] font-normal leading-[30px] text-black/80"
                       >
                         -
                       </button>
-                      <button className=" font-normal text-[16px] leading-[30px] text-black/80 py-[3px] px-[21px]">
+                      <button className="px-[21px] py-[3px] text-[16px] font-normal leading-[30px] text-black/80">
                         {data.qun}
                       </button>
                       <button
                         onClick={() => quantity(i, +1)}
-                        className=" font-normal text-[16px] leading-[30px] text-black/80 py-[3px] px-[21px]"
+                        className="px-[21px] py-[3px] text-[16px] font-normal leading-[30px] text-black/80"
                       >
                         +
                       </button>
                     </Flex>
 
-                    <p className=" font-bold text-base text-center text-red-500">
+                    <p className="text-center text-base font-bold text-red-500">
                       Sub Total: ৳ {data.price * data.qun} BDT
                     </p>
                   </div>
                 </div>
               ))
             ) : (
-              <h2 className=" font-bold text-lg text-black text-center">
+              <h2 className="text-center text-lg font-bold text-black">
                 Your cart is empty
               </h2>
             )}
@@ -121,18 +121,18 @@ const Cart = () => {
           {/* cart body for small screens */}
 
           {/* cart header for big screen  */}
-          <Flex className=" hidden lg:flex items-center bg-slate-800 py-[34px] px-5 flex-wrap">
+          <Flex className="hidden flex-wrap items-center bg-slate-800 px-5 py-[34px] lg:flex">
             <div className="w-1/4">
-              <h2 className="font-bold text-[16px] text-white">Product</h2>
+              <h2 className="text-[16px] font-bold text-white">Product</h2>
             </div>
             <div className="w-1/4">
-              <h2 className="font-bold text-[16px] text-white">Price</h2>
+              <h2 className="text-[16px] font-bold text-white">Price</h2>
             </div>
             <div className="w-1/4">
-              <h2 className="font-bold text-[16px] text-white">Quantity</h2>
+              <h2 className="text-[16px] font-bold text-white">Quantity</h2>
             </div>
             <div className="w-1/4">
-              <h2 className="font-bold text-[16px] text-white">Sub Total</h2>
+              <h2 className="text-[16px] font-bold text-white">Sub Total</h2>
             </div>
           </Flex>
           {/* cart header for big screen  */}
@@ -143,37 +143,37 @@ const Cart = () => {
             cart.map((data, i) => (
               <Flex
                 key={i}
-                className="hidden lg:flex border-[1px] border-[#F0F0F0] py-[30px] px-5 flex-wrap"
+                className="hidden flex-wrap border-[1px] border-[#F0F0F0] px-5 py-[30px] lg:flex"
               >
                 <div className="w-1/4">
                   <Flex className={`items-center gap-10`}>
                     <FaTimes
                       onClick={() => removeItemFromCart(data)}
-                      className=" cursor-pointer"
+                      className="cursor-pointer"
                     />
                     <Flex className={`items-center gap-5`}>
                       <Image
-                        className={`w-[100px] h-[100px]`}
+                        className={`h-[100px] w-[100px]`}
                         src={data.thumbnail}
                       />
                       <div>
                         <Link
                           to={`/product/${data.id}`}
-                          className=" font-dm font-bold text-[16px] text-black hover:underline"
+                          className="font-dm text-[16px] font-bold text-black hover:underline"
                         >
                           {data.title}
                         </Link>
 
-                        <p className=" font-semibold text-base mt-2">
+                        {/* <p className="mt-2 text-base font-semibold">
                           Size: {data.dimensions}
-                        </p>
+                        </p> */}
                       </div>
                     </Flex>
                   </Flex>
                 </div>
 
                 <Flex className="w-1/4 items-center">
-                  <h3 className=" font-bold text-[20px] text-black">
+                  <h3 className="text-[20px] font-bold text-black">
                     ৳ {data.price} BDT
                   </h3>
                 </Flex>
@@ -182,16 +182,16 @@ const Cart = () => {
                   <Flex className={`border-[1px] border-[#F0F0F0]`}>
                     <button
                       onClick={() => quantity(i, -1)}
-                      className=" font-normal text-[16px] leading-[30px] text-black/80 py-[3px] px-[21px]"
+                      className="px-[21px] py-[3px] text-[16px] font-normal leading-[30px] text-black/80"
                     >
                       -
                     </button>
-                    <button className=" font-normal text-[16px] leading-[30px] text-black/80 py-[3px] px-[21px]">
+                    <button className="px-[21px] py-[3px] text-[16px] font-normal leading-[30px] text-black/80">
                       {data.qun}
                     </button>
                     <button
                       onClick={() => quantity(i, +1)}
-                      className=" font-normal text-[16px] leading-[30px] text-black/80 py-[3px] px-[21px]"
+                      className="px-[21px] py-[3px] text-[16px] font-normal leading-[30px] text-black/80"
                     >
                       +
                     </button>
@@ -199,7 +199,7 @@ const Cart = () => {
                 </Flex>
 
                 <Flex className="w-1/4 items-center">
-                  <h3 className=" font-bold text-[20px] text-black">
+                  <h3 className="text-[20px] font-bold text-black">
                     ৳ {data.price * data.qun} BDT
                     {/* {Math.round(
                       (cItem.price -
@@ -211,7 +211,7 @@ const Cart = () => {
               </Flex>
             ))
           ) : (
-            <h2 className="hidden lg:block font-bold text-lg text-black text-center p-3 border-[2px] border-slate-800">
+            <h2 className="hidden border-[2px] border-slate-800 p-3 text-center text-lg font-bold text-black lg:block">
               Your cart is empty
             </h2>
           )}
@@ -219,25 +219,25 @@ const Cart = () => {
           {/* cart body for big screen */}
 
           {/* totals start */}
-          <div className="mt-[54px] mb-[140px]">
-            <h4 className=" font-dm font-bold text-[20px] text-black text-right">
+          <div className="mb-[140px] mt-[54px]">
+            <h4 className="font-dm text-right text-[20px] font-bold text-black">
               Cart totals
             </h4>
 
-            <div className="w-full text-center lg:w-[644px] lg:ml-auto mt-6">
+            <div className="mt-6 w-full text-center lg:ml-auto lg:w-[644px]">
               <Flex>
-                <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-bold text-base text-black">
+                <p className="w-1/2 border-[1px] border-[#F0F0F0] px-5 py-4 text-base font-bold text-black">
                   Subtotal
                 </p>
-                <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-normal text-base text-black ">
+                <p className="w-1/2 border-[1px] border-[#F0F0F0] px-5 py-4 text-base font-normal text-black">
                   ৳ {total} BDT
                 </p>
               </Flex>
               <Flex>
-                <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-bold text-base text-black">
+                <p className="w-1/2 border-[1px] border-[#F0F0F0] px-5 py-4 text-base font-bold text-black">
                   Total
                 </p>
-                <p className="w-1/2 border-[1px] border-[#F0F0F0] py-4 px-5 font-normal text-base text-black ">
+                <p className="w-1/2 border-[1px] border-[#F0F0F0] px-5 py-4 text-base font-normal text-black">
                   ৳ {total} BDT
                 </p>
               </Flex>
@@ -246,7 +246,7 @@ const Cart = () => {
             {cart.length > 0 && (
               <button
                 onClick={() => navigate("/checkout")}
-                className=" w-full md:w-auto font-dm font-bold text-[14px] text-white bg-slate-800 py-4 px-8 ms-auto mt-[30px] block"
+                className="font-dm ms-auto mt-[30px] block w-full bg-slate-800 px-8 py-4 text-[14px] font-bold text-white md:w-auto"
               >
                 Proceed to Checkout
               </button>

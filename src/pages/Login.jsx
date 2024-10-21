@@ -13,7 +13,7 @@ const Login = () => {
   const dispatch = useDispatch(); // dispatch instance
   const navigate = useNavigate(); // navigation instance
   // all state for get user login info
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordToggle, setPasswordToggle] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -24,17 +24,15 @@ const Login = () => {
     setLoading(true);
     // Regular expression to check for English letters (A-Z, a-z)
     const englishRegex = /^[a-zA-Z\s]*$/;
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const numberRegex = /^[0-9]+$/;
 
-    if (!numberRegex.test(phone)) {
-      toast.error("Pls Enter Phone Number In English");
+    if (!emailRegex.test(email)) {
+      toast.error("Pls Enter Valid Email Address");
       setLoading(false);
-    } else if (phone.length != 11) {
-      toast.error("Pls Enter 11 Digit Valid Phone Number");
-      setLoading(false);
-    } else if (phone && password) {
+    } else if (email && password) {
       let customer = {
-        phone,
+        email,
         password,
       };
       try {
@@ -78,7 +76,7 @@ const Login = () => {
         <form
           onSubmit={handleLogin}
           action=""
-          className="mx-auto w-full border-[1px] border-[#F0F0F0] p-2 md:w-[450px]"
+          className="mx-auto w-full border-[1px] border-[#F0F0F0] p-2 shadow-custom md:w-[450px]"
         >
           <h2 className="mb-5 text-center text-2xl font-semibold">
             Login Here
@@ -86,15 +84,15 @@ const Login = () => {
 
           <div className="mb-5 w-full">
             <label className="text-base font-medium text-black" htmlFor="">
-              Your Mobile Number
+              Your Email Address
             </label>
 
             <input
-              onChange={(e) => setPhone(e.target.value)}
-              value={phone}
-              className="font-kanit h-full w-full border-[1px] border-black p-2 text-base font-medium xl:text-xl"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              className="font-kanit h-full w-full rounded-md border-[2px] border-primary p-2 text-base font-medium xl:text-xl"
               type="text"
-              placeholder="01*********"
+              placeholder="jhondoe@email.com"
               required
             />
           </div>
@@ -107,7 +105,7 @@ const Login = () => {
               <input
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                className="font-kanit h-full w-full border-[1px] border-black p-2 text-base font-medium xl:text-xl"
+                className="font-kanit h-full w-full rounded-md border-[2px] border-primary p-2 text-base font-medium xl:text-xl"
                 type={passwordToggle ? "text" : "password"}
                 required
               />
@@ -130,7 +128,7 @@ const Login = () => {
           ) : (
             <button
               type="submit"
-              className="w-full bg-slate-800 p-3 text-xl font-medium text-white"
+              className="w-full rounded-md border-[2px] border-primary bg-white p-3 text-xl font-medium text-primary duration-300 ease-in-out hover:bg-primary hover:text-white"
             >
               Login
             </button>
@@ -138,7 +136,7 @@ const Login = () => {
 
           <p className="mt-2 text-center text-base font-normal">
             No Account ?
-            <Link to="/signup" className="text-red-500">
+            <Link to="/signup" className="font-semibold text-primary">
               Create a new Account
             </Link>
           </p>

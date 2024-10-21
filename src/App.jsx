@@ -19,6 +19,7 @@ import Profile from "./pages/Profile";
 import ProtectorRoute from "./routes/ProtectorRoute";
 import ViewCategories from "./pages/ViewCategories";
 import NewsPage from "./pages/NewsPage";
+import Contact from "./pages/Contact";
 
 function App() {
   const customerdata = useSelector((state) => state.user.user); // get customer info from the redux
@@ -35,6 +36,7 @@ function App() {
         />
         <Route path="/cart" element={<Cart />} />
         <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -48,8 +50,8 @@ function App() {
           }
         />
         <Route path="/*" element={<ErrorPage />} />
-      </Route>
-    )
+      </Route>,
+    ),
   );
   return <RouterProvider router={router} />;
 }

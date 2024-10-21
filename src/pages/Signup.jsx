@@ -14,6 +14,7 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [customerType, setCustomerType] = useState("individual");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordToggle, setPasswordToggle] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -24,6 +25,7 @@ const Signup = () => {
     setLoading(true);
 
     // Regular expression to check for English letters (A-Z, a-z)
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const englishRegex = /^[a-zA-Z\s]*$/;
     const numberRegex = /^[0-9]+$/;
 
@@ -32,20 +34,14 @@ const Signup = () => {
       setLoading(false);
     }
 
-    if (!numberRegex.test(phone)) {
-      toast.error("Pls Enter Phone Number In English");
-      setLoading(false);
-    }
-
-    if (phone.length != 11) {
-      toast.error("Pls Enter 11 Digit Valid Phone Number");
+    if (!emailRegex.test(email)) {
+      toast.error("Pls Enter valid Email Address");
       setLoading(false);
     } else if (name && phone && password) {
       let newCustomer = {
         id: uuidv4(),
         name,
-        customerType,
-        phone,
+        email,
         password,
         created: new Date().toLocaleString(),
       };
@@ -58,7 +54,7 @@ const Signup = () => {
         });
         console.log(res);
 
-        if (res.data.msg == "User is exist with same number.") {
+        if (res.data.msg == "User is exist with same email.") {
           setLoading(false);
           toast.error(res.data.msg);
         } else {
@@ -82,7 +78,7 @@ const Signup = () => {
     });
   }, []);
   return (
-    <main className="my-10">
+    <main className="my-20">
       <Toaster position="top-right" reverseOrder={false} />
       <Container>
         <BreadCrums location="Signup" />
@@ -90,7 +86,7 @@ const Signup = () => {
         <form
           onSubmit={handleSignup}
           action=""
-          className="mx-auto mt-10 w-full border-[1px] border-[#F0F0F0] p-2 md:w-[450px]"
+          className="mx-auto mt-10 w-full border-[1px] border-[#F0F0F0] p-2 shadow-custom md:w-[450px]"
         >
           <h2 className="mb-5 text-center text-2xl font-semibold">
             New Account
@@ -104,13 +100,13 @@ const Signup = () => {
             <input
               onChange={(e) => setName(e.target.value)}
               value={name}
-              className="font-kanit h-full w-full border-[1px] border-black p-2 text-base font-medium xl:text-xl"
+              className="font-kanit h-full w-full rounded-md border-[2px] border-primary p-2 text-base font-medium xl:text-xl"
               type="text"
               required
             />
           </div>
 
-          <div className="mb-5 w-full">
+          {/* <div className="mb-5 w-full">
             <label className="text-base font-medium text-black" htmlFor="">
               I am
             </label>
@@ -130,18 +126,18 @@ const Signup = () => {
                 a Reseller
               </option>
             </select>
-          </div>
+          </div> */}
           <div className="mb-5 w-full">
             <label className="text-base font-medium text-black" htmlFor="">
-              Your Mobile Number
+              Your Email Address
             </label>
 
             <input
-              onChange={(e) => setPhone(e.target.value)}
-              value={phone}
-              className="font-kanit h-full w-full border-[1px] border-black p-2 text-base font-medium xl:text-xl"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              className="font-kanit h-full w-full rounded-md border-[2px] border-primary p-2 text-base font-medium xl:text-xl"
               type="text"
-              placeholder="01*********"
+              placeholder="jhondoe@email.com"
               required
             />
           </div>
@@ -154,7 +150,7 @@ const Signup = () => {
               <input
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
-                className="font-kanit h-full w-full border-[1px] border-black p-2 text-base font-medium xl:text-xl"
+                className="font-kanit h-full w-full rounded-md border-[2px] border-primary p-2 text-base font-medium xl:text-xl"
                 type={passwordToggle ? "text" : "password"}
                 required
               />
@@ -178,14 +174,14 @@ const Signup = () => {
           ) : (
             <button
               type="submit"
-              className="w-full bg-slate-800 p-3 text-xl font-medium text-white"
+              className="w-full rounded-md border-[2px] border-primary bg-white p-3 text-xl font-medium text-primary duration-300 ease-in-out hover:bg-primary hover:text-white"
             >
               Signup
             </button>
           )}
 
-          <p className="mt-2 text-center text-base font-normal">
-            <Link to="/login" className="text-red-500">
+          <p className="mt-2 text-center text-base font-semibold">
+            <Link to="/login" className="text-primary">
               Go to Login
             </Link>
           </p>

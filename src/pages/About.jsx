@@ -10,12 +10,12 @@ const About = () => {
     });
   }, []);
   return (
-    <main className="h-screen w-full bg-bgScreen pt-[100px]">
+    <main className="h-screen w-full pt-[100px]">
       <Container>
         <BreadCrums location="About" />
 
-        <section className=" mt-[100px]">
-          <h1 className=" font-semibold text-2xl text-red-500">
+        <section className="mt-[100px]">
+          <h1 className="text-2xl font-semibold text-red-500">
             This page is in under construction
           </h1>
         </section>

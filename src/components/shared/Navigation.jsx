@@ -39,22 +39,18 @@ const Navigation = () => {
                 </Link>
               </ListItem>
               <ListItem>
-                <Link className="text-lg font-bold text-primary" to="/about">
-                  About
-                </Link>
-              </ListItem>
-              <ListItem>
                 <Link className="text-lg font-bold text-primary" to="/shop">
                   Shop
                 </Link>
               </ListItem>
               <ListItem>
-                <Link className="text-lg font-bold text-primary" to="/news">
-                  News & Updates
+                <Link className="text-lg font-bold text-primary" to="/contact">
+                  Contact
                 </Link>
               </ListItem>
             </List>
           </div>
+
           <div className="w-1/2 lg:w-4/12">
             <Flex className="items-center justify-end gap-4">
               <List className="flex flex-row items-end justify-end gap-3 xl:gap-5">
