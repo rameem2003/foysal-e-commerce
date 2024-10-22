@@ -57,7 +57,7 @@ const ProductsSection = () => {
         <div className="text-center">
           <Link
             to="/shop"
-            className="mx-auto my-10 inline-flex items-center justify-center gap-2 border-[1px] border-gray-500 p-2 text-lg font-semibold hover:bg-black hover:text-white"
+            className="mx-auto my-10 inline-flex items-center justify-center gap-2 rounded-md border-[2px] border-primary p-2 text-lg font-semibold text-primary duration-300 ease-in-out hover:bg-primary hover:text-white"
           >
             View More
             <FaArrowRight />

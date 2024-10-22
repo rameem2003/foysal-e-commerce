@@ -5,7 +5,6 @@ import List from "./../common/List";
 import ListItem from "./../common/ListItem";
 import Image from "../common/Image";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { allProducts } from "../../redux/features/LoadAllProductsSlice";
@@ -98,7 +97,6 @@ const Header = () => {
 
   return (
     <header className="bg-primary py-2">
-      <Toaster position="top-right" reverseOrder={false} />
       <Container>
         <Flex className="items-center justify-between gap-2 xl:gap-5">
           <div className="relative w-3/12 md:w-2/12">
