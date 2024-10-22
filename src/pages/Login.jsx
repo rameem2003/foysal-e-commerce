@@ -36,11 +36,15 @@ const Login = () => {
         password,
       };
       try {
-        let res = await axios.post("", customer, {
-          headers: {
-            "Content-Type": "application/json",
+        let res = await axios.post(
+          `${import.meta.env.VITE_API_BASE_URL}auth/varify`,
+          customer,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
           },
-        });
+        );
 
         console.log(res);
 

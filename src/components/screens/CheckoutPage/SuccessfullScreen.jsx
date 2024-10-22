@@ -4,16 +4,14 @@ import { Link } from "react-router-dom";
 
 const SuccessfullScreen = () => {
   return (
-    <section className="w-full h-full flex items-center flex-col justify-center gap-5 absolute top-0 left-0 bg-white">
-      <FaCheckCircle className=" text-7xl text-green-600" />
-      <h1 className=" font-bold text-3xl lg:text-6xl text-center">
+    <section className="absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-5 bg-white">
+      <FaCheckCircle className="text-7xl text-green-600" />
+      <h1 className="text-center text-3xl font-bold lg:text-6xl">
         Your order is received successfully
       </h1>
-      <p className=" font-bold text-2xl text-center">
-        Our seller will call you
-      </p>
+      <p className="text-center text-2xl font-bold">Our seller will call you</p>
 
-      <Link to="/" className=" block p-3 bg-slate-800 text-white">
+      <Link to="/" className="block rounded-md bg-primary p-3 text-white">
         Back to Home
       </Link>
     </section>

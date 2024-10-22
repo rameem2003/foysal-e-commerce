@@ -203,11 +203,12 @@ const Header = () => {
                         {customerdata.user}
                       </h2>
 
+                      <p className="text-base font-normal capitalize text-white">
+                        Email:{" "}
+                        <span className="lowercase">{customerdata.email}</span>
+                      </p>
                       <p className="text-base font-normal text-white">
                         Phone: {customerdata.phone}
-                      </p>
-                      <p className="text-base font-normal capitalize text-white">
-                        Customer Type: {customerdata.type}
                       </p>
 
                       <Flex className="mt-5 gap-2">

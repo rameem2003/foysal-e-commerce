@@ -12,9 +12,9 @@ const Profile = () => {
   const [orders, setOrders] = useState([]);
 
   const fecthOrderslist = async () => {
-    const res = await axios.get("https://smcorpapi.vercel.app/api/order");
+    const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}order`);
 
-    let filtered = res.data.filter((item) => item.phone == customerdata.phone);
+    let filtered = res.data.filter((item) => item.email == customerdata.email);
 
     setOrders(filtered);
   };
@@ -35,37 +35,34 @@ const Profile = () => {
       <Container>
         <BreadCrums location="Profile" />
 
-        <Flex className="mt-5 flex-col lg:flex-row gap-10">
-          <div className=" w-full  lg:w-3/12">
-            <h2 className=" font-bold text-xl xl:text-5xl text-black">
+        <Flex className="mt-5 flex-col gap-10 lg:flex-row">
+          <div className="w-full lg:w-3/12">
+            <h2 className="text-xl font-bold text-black xl:text-5xl">
               Profile Info
             </h2>
 
-            <Image
-              src="/avater.png"
-              className=" sm:w-[50%] lg:w-full mx-auto"
-            />
+            <Image src="/avater.png" className="mx-auto sm:w-[50%] lg:w-full" />
 
             <div className="mt-2">
-              <h3 className=" font-bold text-3xl text-black text-center">
+              <h3 className="text-center text-3xl font-bold text-black">
                 {customerdata.user}
               </h3>
-              <h3 className=" font-semibold text-xl text-black text-center">
+              <h3 className="text-center text-xl font-semibold text-black">
                 Phone: {customerdata.phone}
               </h3>
-              <h3 className=" font-semibold text-xl text-black text-center capitalize">
-                Customer Type: {customerdata.type}
+              <h3 className="text-center text-xl font-semibold capitalize text-black">
+                Email: <span className="lowercase">{customerdata.email}</span>
               </h3>
             </div>
           </div>
-          <div className=" w-full  lg:w-9/12">
-            <h2 className=" font-bold text-xl xl:text-5xl text-black text-left lg:text-right">
+          <div className="w-full lg:w-9/12">
+            <h2 className="text-left text-xl font-bold text-black lg:text-right xl:text-5xl">
               Your Order's
             </h2>
 
             <div className="mt-5">
               {orders.length == 0 && (
-                <p className=" font-bold text-lg text-red-700">
+                <p className="text-lg font-bold text-red-700">
                   You have no order's in recent past
                 </p>
               )}

@@ -32,31 +32,37 @@ const Signup = () => {
     if (!englishRegex.test(name)) {
       toast.error("Pls Enter Name In English");
       setLoading(false);
-    }
-
-    if (!emailRegex.test(email)) {
+    } else if (!numberRegex.test(phone) || phone.length !== 11) {
+      toast.error("Pls Enter Valid Phone Number");
+      setLoading(false);
+    } else if (!emailRegex.test(email)) {
       toast.error("Pls Enter valid Email Address");
       setLoading(false);
-    } else if (name && phone && password) {
+    } else if (name && email && phone && password) {
       let newCustomer = {
         id: uuidv4(),
         name,
         email,
+        phone,
         password,
         created: new Date().toLocaleString(),
       };
 
       try {
-        const res = await axios.post("", newCustomer, {
-          headers: {
-            "Content-Type": "application/json",
+        const res = await axios.post(
+          `${import.meta.env.VITE_API_BASE_URL}auth/register`,
+          newCustomer,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
           },
-        });
+        );
         console.log(res);
 
-        if (res.data.msg == "User is exist with same email.") {
+        if (res.data.msg == "user-is-exist-with-same-email") {
           setLoading(false);
-          toast.error(res.data.msg);
+          toast.error("User is exist with same email.");
         } else {
           toast.success("Signup successful");
           setTimeout(() => {
@@ -105,28 +111,21 @@ const Signup = () => {
               required
             />
           </div>
-
-          {/* <div className="mb-5 w-full">
+          <div className="mb-5 w-full">
             <label className="text-base font-medium text-black" htmlFor="">
-              I am
+              Your Phone Number
             </label>
 
-            <select
-              onChange={(e) => setCustomerType(e.target.value)}
-              value={customerType}
-              className="font-kanit h-full w-full border-[1px] border-black p-2 text-base font-medium xl:text-xl"
-              name=""
-              id=""
+            <input
+              onChange={(e) => setPhone(e.target.value)}
+              value={phone}
+              className="font-kanit h-full w-full rounded-md border-[2px] border-primary p-2 text-base font-medium xl:text-xl"
+              type="text"
+              placeholder="01*********"
               required
-            >
-              <option id="1" value="individual">
-                an Individual Customer
-              </option>
-              <option id="2" value="reseller shop holder">
-                a Reseller
-              </option>
-            </select>
-          </div> */}
+            />
+          </div>
+
           <div className="mb-5 w-full">
             <label className="text-base font-medium text-black" htmlFor="">
               Your Email Address

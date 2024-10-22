@@ -59,7 +59,7 @@ const Checkout = () => {
     let orderInvoiceData = {
       orderID: uuidv4(),
       customerName: customerData.user,
-      customerType: customerData.type,
+      email: customerData.email,
       phone: customerData.phone,
       address,
       area,
@@ -75,11 +75,15 @@ const Checkout = () => {
 
     if (address && area && district && postcode) {
       try {
-        const res = await axios.post("", orderInvoiceData, {
-          headers: {
-            "Content-Type": "application/json",
+        const res = await axios.post(
+          `${import.meta.env.VITE_API_BASE_URL}order`,
+          orderInvoiceData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
           },
-        });
+        );
         setLoading(false);
         setIsSuccess(true);
         dispatch(cartClear());
@@ -123,7 +127,7 @@ const Checkout = () => {
                   <input
                     onChange={(e) => setAddress(e.target.value)}
                     value={address}
-                    className="font-kanit h-full w-full border-[1px] border-black p-2 text-base font-medium xl:text-xl"
+                    className="font-kanit h-full w-full rounded-md border-[2px] border-primary p-2 text-base font-medium xl:text-xl"
                     type="text"
                     required
                   />
@@ -139,7 +143,7 @@ const Checkout = () => {
                   <input
                     onChange={(e) => setArea(e.target.value)}
                     value={area}
-                    className="font-kanit h-full w-full border-[1px] border-black p-2 text-base font-medium xl:text-xl"
+                    className="font-kanit h-full w-full rounded-md border-[2px] border-primary p-2 text-base font-medium xl:text-xl"
                     type="text"
                     required
                   />
@@ -155,7 +159,7 @@ const Checkout = () => {
                   <select
                     name=""
                     id=""
-                    className="font-kanit h-full w-full border-[1px] border-black p-2 text-base font-medium xl:text-xl"
+                    className="font-kanit h-full w-full rounded-md border-[2px] border-primary p-2 text-base font-medium xl:text-xl"
                     onChange={(e) => setDistrict(e.target.value)}
                     value={district}
                     required
@@ -181,21 +185,27 @@ const Checkout = () => {
                   <input
                     onChange={(e) => setPostcode(e.target.value)}
                     value={postcode}
-                    className="font-kanit h-full w-full border-[1px] border-black p-2 text-base font-medium xl:text-xl"
+                    className="font-kanit h-full w-full rounded-md border-[2px] border-primary p-2 text-base font-medium xl:text-xl"
                     type="text"
                     required
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className={`w-full bg-slate-800 p-3 text-xl font-medium text-white ${
-                    cart.length == 0 &&
-                    "pointer-events-none cursor-not-allowed bg-slate-400"
-                  }`}
-                >
-                  Procced to Checkout
-                </button>
+                {!cart.length == 0 ? (
+                  <button
+                    type="submit"
+                    className={`w-full rounded-md bg-primary p-3 text-xl font-medium text-white`}
+                  >
+                    Procced to Checkout
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    className={`pointer-events-none w-full rounded-md bg-slate-400 p-3 text-xl font-medium text-white`}
+                  >
+                    Procced to Checkout
+                  </button>
+                )}
               </form>
             </div>
 
