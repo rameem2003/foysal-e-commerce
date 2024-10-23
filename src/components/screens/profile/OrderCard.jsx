@@ -5,6 +5,8 @@ import logo from "../../../assets/logo.png";
 import { useReactToPrint } from "react-to-print";
 
 const OrderCard = ({ data }) => {
+  console.log(data);
+
   const [printScreen, setPrintScreen] = useState(false);
   const printRef = useRef();
 
@@ -15,75 +17,90 @@ const OrderCard = ({ data }) => {
 
   return (
     <>
-      <div className=" border-b-[2px] border-black mb-10 py-5 w-full">
-        <Flex className=" flex-col lg:flex-row items-center justify-between gap-5 mb-3">
+      <div className="mb-10 w-full border-b-[2px] border-black py-5">
+        <Flex className="mb-3 flex-col items-center justify-between gap-5 lg:flex-row">
           <div className="w-full lg:w-1/2">
-            <p className=" font-semibold text-lg text-red-700">
+            <p className="text-lg font-semibold text-red-700">
               Order id: {data.orderID}
             </p>
-            <p className=" font-semibold text-lg text-black">
+            <p className="text-lg font-semibold text-black">
               Order Date: {data.orderTimeStamp}
             </p>
-            <p className=" font-semibold text-lg text-black">
+            <p className="text-lg font-semibold text-black">
+              Payment Status:{" "}
+              {data.paidStatus ? (
+                <span className="rounded-full bg-green-600 px-5 py-1 text-white">
+                  Paid
+                </span>
+              ) : (
+                <span className="rounded-full bg-red-600 px-5 py-1 text-white">
+                  Not Paid
+                </span>
+              )}
+            </p>
+            <p className="text-lg font-semibold text-black">
+              Transaction ID: {data.transactionID}
+            </p>
+            <p className="text-lg font-semibold text-black">
               Shipping Agent: {data.shippingAgent}
             </p>
           </div>
-          <div className="w-full lg:w-1/2 text-center lg:text-right">
+          <div className="w-full text-center lg:w-1/2 lg:text-right">
             {data.orderStatus == "pending" && (
-              <span className=" text-right p-1 rounded-full text-yellow-500 border-[2px] border-yellow-500">
+              <span className="rounded-full border-[2px] border-yellow-500 p-1 text-right text-yellow-500">
                 Order is pending
               </span>
             )}
 
             {data.orderStatus == "shipping" && (
-              <span className=" text-right p-1 rounded-full text-purple-500 border-[2px] border-purple-500">
+              <span className="rounded-full border-[2px] border-purple-500 p-1 text-right text-purple-500">
                 Order is shipping
               </span>
             )}
             {data.orderStatus == "completed" && (
-              <span className=" text-right p-1 rounded-full text-green-500 border-[2px] border-green-500">
+              <span className="rounded-full border-[2px] border-green-500 p-1 text-right text-green-500">
                 Order is completed
               </span>
             )}
             {data.orderStatus == "canceled" && (
-              <span className=" text-right p-1 rounded-full text-red-500 border-[2px] border-red-500">
+              <span className="rounded-full border-[2px] border-red-500 p-1 text-right text-red-500">
                 Order is canceled
               </span>
             )}
           </div>
         </Flex>
 
-        <Flex className="items-center justify-between flex-wrap gap-5 mb-3">
-          <p className="font-medium text-lg text-black">
+        <Flex className="mb-3 flex-wrap items-center justify-between gap-5">
+          <p className="text-lg font-medium text-black">
             Address: {data.address}
           </p>
-          <p className="font-medium text-lg text-black">Area: {data.area}</p>
-          <p className="font-medium text-lg text-black">
+          <p className="text-lg font-medium text-black">Area: {data.area}</p>
+          <p className="text-lg font-medium text-black">
             District: {data.district}
           </p>
-          <p className="font-medium text-lg text-black">
+          <p className="text-lg font-medium text-black">
             Post Code: {data.postcode}
           </p>
         </Flex>
 
         <div className="">
           {data.cart?.map((item, i) => (
-            <Flex key={i} className="gap-5 flex-col lg:flex-row mb-5">
+            <Flex key={i} className="mb-5 flex-col gap-5 lg:flex-row">
               <div className="w-full lg:w-7/12">
-                <h3 className=" font-bold text-xl text-red-700 mb-1">
+                <h3 className="mb-1 text-xl font-bold text-red-700">
                   {item.title}
                 </h3>
 
                 <Flex className="items-center justify-between gap-5">
-                  <p className=" font-semibold text-lg text-black">
-                    Product id: <span className=" text-red-700">{item.id}</span>
+                  <p className="text-lg font-semibold text-black">
+                    Product id: <span className="text-red-700">{item.id}</span>
                   </p>
-                  <p className=" font-semibold text-lg text-black">
-                    Quntity: <span className=" text-red-700">{item.qun}</span>
+                  <p className="text-lg font-semibold text-black">
+                    Quntity: <span className="text-red-700">{item.qun}</span>
                   </p>
-                  <p className=" font-semibold text-lg text-black">
+                  <p className="text-lg font-semibold text-black">
                     Subtotal:{" "}
-                    <span className=" text-red-700">
+                    <span className="text-red-700">
                       {item.qun * item.price}
                     </span>
                   </p>
@@ -91,7 +108,7 @@ const OrderCard = ({ data }) => {
               </div>
               <div className="w-full lg:w-5/12">
                 <Image
-                  className="w-[120px] h-[120px] mx-auto lg:ml-auto"
+                  className="mx-auto h-[120px] w-[120px] lg:ml-auto"
                   src={item.thumbnail}
                 />
               </div>
@@ -99,14 +116,14 @@ const OrderCard = ({ data }) => {
           ))}
         </div>
 
-        <Flex className="items-center justify-between flex-col lg:flex-row gap-5">
-          <h3 className=" font-bold text-base lg:text-3xl text-black">
+        <Flex className="flex-col items-center justify-between gap-5 lg:flex-row">
+          <h3 className="text-base font-bold text-black lg:text-3xl">
             Grand Total: ৳ {data.grandTotal} BDT
           </h3>
 
           <button
             onClick={() => setPrintScreen(!printScreen)}
-            className=" p-2 bg-black font-semibold text-sm lg:text-base text-white"
+            className="bg-black p-2 text-sm font-semibold text-white lg:text-base"
           >
             Generate Invoice
           </button>
@@ -116,20 +133,20 @@ const OrderCard = ({ data }) => {
       {/* print invoice section start */}
       {printScreen && (
         <div>
-          <div ref={printRef} className=" py-10 px-3">
+          <div ref={printRef} className="px-3 py-10">
             <p>Generation date: {new Date().toLocaleString()}</p>
             <Flex className="items-center justify-between">
               <div className="w-1/2">
-                <h1 className="mt-5 font-bold text-2xl text-black">
+                <h1 className="mt-5 text-2xl font-bold text-black">
                   M/S S M Corporation
                 </h1>
 
-                <h2 className=" mt-2 font-medium text-sm text-black">
+                <h2 className="mt-2 text-sm font-medium text-black">
                   Address: DCC-86, Road No.-1, Rahmatbagh, Ashrafabad,
                   Kamrangirchar,Dhaka-1210
                 </h2>
 
-                <p className=" mt-2 font-medium text-sm text-black">
+                <p className="mt-2 text-sm font-medium text-black">
                   Phone: 01748-121515, 01921-676695, 01933-788415
                 </p>
               </div>
@@ -139,40 +156,43 @@ const OrderCard = ({ data }) => {
               </div>
             </Flex>
 
-            <p className=" font-bold text-3xl text-center text-black mb-10">
+            <p className="mb-10 text-center text-3xl font-bold text-black">
               Invoice
             </p>
 
-            <p className=" font-bold text-lg text-black">
+            <p className="text-lg font-bold text-black">
               Customer Name: {data.customerName}
             </p>
-            <p className=" font-bold text-lg text-black capitalize">
-              Customer type: {data.customerType}
+            <p className="text-lg font-bold capitalize text-black">
+              Order ID: {data.orderID}
             </p>
-            <p className=" font-bold text-lg text-black">Phone: {data.phone}</p>
+            <p className="text-lg font-bold capitalize text-black">
+              Transaction ID: {data.transactionID}
+            </p>
+            <p className="text-lg font-bold text-black">Phone: {data.phone}</p>
 
-            <p className=" font-bold text-lg text-black ">
+            <p className="text-lg font-bold text-black">
               Shipping Agent: {data.shippingAgent}
             </p>
 
-            <Flex className="items-center justify-between flex-wrap gap-5 mb-3">
-              <p className="font-normal text-base text-black">
+            <Flex className="mb-3 flex-wrap items-center justify-between gap-5">
+              <p className="text-base font-normal text-black">
                 Address: {data.address}
               </p>
-              <p className="font-normal text-base text-black">
+              <p className="text-base font-normal text-black">
                 Area: {data.area}
               </p>
-              <p className="font-normal text-base text-black">
+              <p className="text-base font-normal text-black">
                 District: {data.district}
               </p>
-              <p className="font-normal text-base text-black">
+              <p className="text-base font-normal text-black">
                 Post Code: {data.postcode}
               </p>
             </Flex>
 
-            <div className="relative overflow-x-auto mt-5">
-              <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
+            <div className="relative mt-5 overflow-x-auto">
+              <table className="w-full text-left text-sm text-gray-500 rtl:text-right">
+                <thead className="bg-gray-50 text-xs uppercase text-gray-700">
                   <tr>
                     <th scope="col" className="px-6 py-3">
                       Product name
@@ -190,10 +210,10 @@ const OrderCard = ({ data }) => {
                 </thead>
                 <tbody>
                   {data.cart?.map((data, i) => (
-                    <tr className="bg-white border-b" key={i}>
+                    <tr className="border-b bg-white" key={i}>
                       <th
                         scope="row"
-                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
                       >
                         {data.title}
                       </th>
@@ -208,14 +228,14 @@ const OrderCard = ({ data }) => {
               </table>
             </div>
 
-            <h3 className=" font-bold text-3xl text-black mt-5 text-right">
+            <h3 className="mt-5 text-right text-3xl font-bold text-black">
               Grand Total: ৳ {data.grandTotal} BDT
             </h3>
           </div>
 
           <button
             onClick={handlePrint}
-            className=" p-2 bg-red-700 font-semibold text-base text-white"
+            className="bg-red-700 p-2 text-base font-semibold text-white"
           >
             Print
           </button>
