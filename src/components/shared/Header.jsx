@@ -53,7 +53,7 @@ const Header = () => {
   // function for logout customer
   const handleLogout = () => {
     dispatch(logoutUser({ status: false }));
-
+    navigate("/");
     setTimeout(() => {
       location.reload();
     }, 2000);

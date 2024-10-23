@@ -4,7 +4,7 @@ import { Hourglass } from "react-loader-spinner";
 
 const ProcessingAnimation = () => {
   return (
-    <Flex className=" flex-col gap-10 items-center justify-center w-full h-screen bg-white/80 backdrop-blur-sm fixed z-[100] top-0 left-0">
+    <Flex className="fixed left-0 top-0 z-[100] h-screen w-full flex-col items-center justify-center gap-10 bg-white/80 backdrop-blur-sm">
       <Hourglass
         visible={true}
         height="120"
@@ -12,10 +12,10 @@ const ProcessingAnimation = () => {
         ariaLabel="hourglass-loading"
         wrapperStyle={{}}
         wrapperClass=""
-        colors={["#DC2626", "#DC2626"]}
+        colors={["#8224E3", "#8224E3"]}
       />
 
-      <p className=" font-medium text-3xl text-red-500">
+      <p className="text-3xl font-medium text-red-500">
         Processing your order please wait....
       </p>
     </Flex>
