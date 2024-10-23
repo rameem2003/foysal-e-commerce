@@ -85,8 +85,9 @@ const Checkout = () => {
           },
         );
         setLoading(false);
-        setIsSuccess(true);
+        // setIsSuccess(true);
         dispatch(cartClear());
+        window.location.replace(res.data.url);
       } catch (error) {
         console.log(error);
         setLoading(false);

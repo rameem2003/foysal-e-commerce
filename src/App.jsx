@@ -20,6 +20,7 @@ import ProtectorRoute from "./routes/ProtectorRoute";
 import ViewCategories from "./pages/ViewCategories";
 import NewsPage from "./pages/NewsPage";
 import Contact from "./pages/Contact";
+import SuccessfullScreen from "./components/screens/CheckoutPage/SuccessfullScreen";
 
 function App() {
   const customerdata = useSelector((state) => state.user.user); // get customer info from the redux
@@ -41,6 +42,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route
+          path="/payment/success/:tranId"
+          element={<SuccessfullScreen />}
+        />
         <Route
           path="/profile"
           element={
