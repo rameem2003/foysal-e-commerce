@@ -19,7 +19,7 @@ const ShopCategories = () => {
           <div className="relative left-0 top-[-65px] h-[1px] w-full bg-gray-300"></div>
         </div>
 
-        <Flex className="mt-10 flex-wrap items-center justify-between">
+        <Flex className="mt-10 flex-wrap items-center justify-between gap-4">
           <CategoryBox />
           <CategoryBox />
           <CategoryBox />

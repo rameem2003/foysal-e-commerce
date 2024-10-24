@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Banner from "../components/screens/homepage/Banner";
 import ProductsSection from "../components/screens/homepage/ProductsSection";
-import Services from "../components/screens/homepage/Services";
 import ShopCategories from "../components/screens/homepage/ShopCategories";
 
 const Home = () => {

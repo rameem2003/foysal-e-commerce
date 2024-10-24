@@ -5,9 +5,9 @@ const Title = ({ title }) => {
   return (
     <section className="mb-10 mt-5">
       <Flex className="items-center gap-5">
-        <div className="h-[40px] w-[15px] rounded-md bg-primary"></div>
+        <div className="h-[35px] w-[14px] rounded-md bg-primary md:h-[40px] md:w-[15px]"></div>
 
-        <h2 className="text-4xl font-bold text-primary">{title}</h2>
+        <h2 className="text-3xl font-bold text-primary md:text-4xl">{title}</h2>
       </Flex>
     </section>
   );

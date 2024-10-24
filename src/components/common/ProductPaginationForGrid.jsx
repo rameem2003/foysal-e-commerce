@@ -41,7 +41,7 @@ const PaginationForGrid = ({ itemsPerPage, products }) => {
             currentItems.map((item, i) => (
               <ItemCardProtrait
                 data={item}
-                className="w-full md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]"
+                className="w-full sm:w-[49%] md:w-[49%] lg:w-[32.5%] xl:w-[19%] 2xl:w-[16%]"
                 key={i}
               />
             ))}

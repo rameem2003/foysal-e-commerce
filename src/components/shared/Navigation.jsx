@@ -28,9 +28,9 @@ const Navigation = () => {
           </div>
 
           <div
-            className={`absolute top-[75px] z-[100] ${
-              tog ? "left-0" : "left-[-100%]"
-            } w-full bg-white lg:static lg:w-4/12`}
+            className={`absolute top-[75px] z-[100] flex h-screen items-center justify-center duration-300 ease-in-out ${
+              tog ? "left-0 w-[80%]" : "left-[-100%]"
+            } w-full bg-white lg:static lg:h-full lg:w-4/12`}
           >
             <List className="flex flex-col items-center justify-center gap-5 lg:flex-row">
               <ListItem>
